@@ -1,5 +1,33 @@
 # Instructions for setting up interceptor
 
+## Using mitmproxy
+
+### Requirements
+* Android device (emulators can be used)
+* [WiiM Home](https://play.google.com/store/apps/details?id=com.linkplay.wiimhome) app
+* [mitmproxy](https://mitmproxy.org)
+
+### Instructions
+* Install mitmproxy
+* Run `mitmweb --ssl-insecure` from a terminal
+* Configure Android to use the proxy:
+  * Settings
+  * Network & Internet
+  * Internet
+  * Settings cog (beside WiFi network name)
+  * Pencil (in the top right)
+  * Open "Advanced options"
+  * Change "Proxy" to "Manual"
+  * Set "Proxy hostname" to the proxy IP address
+  * Set "Proxy port" to 8080
+* Filter HTTP requests by searching for "command=".
+* Open the WiiM Home app and start clicking various options in the app. The respective HTTP requests will appear in the HTTP interceptor.
+  ![mitmweb example](https://github.com/user-attachments/assets/a600b64f-5691-49bc-a05a-7557bff804c8)
+* When done, don't forget to change "Proxy" back to "None"
+
+
+## Using HTTP Toolkit PRO
+
 ### Requirements
 * Android device (emulators can be used)
 * [WiiM Home](https://play.google.com/store/apps/details?id=com.linkplay.wiimhome) app
