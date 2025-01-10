@@ -151,6 +151,24 @@ If any functionality you need is not listed here, feel free to create a PR with 
   * Observations:
     * Value can be set even if output is not SPDIF
     * `SPDIF_OUT_SWITCH_DELAY_MS` is upper bound to 3000.
+
+* #### Get left/right channel balance
+  * Command: `getChannelBalance`
+  * Args: None
+  * Example: https://192.168.1.100/httpapi.asp?command=getChannelBalance
+  * Output example
+    ```
+    0.0
+    ```
+  * Observations:
+    * The value will be a number ranging from `-1.0` (fully panned left) to `1.0` (fully panned right).
+* #### Set left/right channel balance
+  * Command: `setChannelBalance`
+  * Args: `CHANNEL_BALANCE`: `-1.0` to `1.0` (decimal is optional)
+  * Example: https://192.168.1.100/httpapi.asp?command=setChannelBalance:0
+  * Output
+    * Success: `OK`
+    * Error: `Failed`
 ---
 
 ### Misc
