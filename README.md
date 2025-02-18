@@ -46,7 +46,7 @@ If any functionality you need is not listed here, feel free to create a PR with 
 
 * #### Start Bluetooth device scan
   * Command: `startbtdiscovery`
-  * Args: `3` (Not sure what this argument means, I've only seen the app use the value `3` for it. Works with other integers and successfully starts a BT scan. Maybe a max list size?)
+  * Args: `NUM_SECONDS`: Number of seconds for which to run the scan for
   * Example: https://192.168.1.100/httpapi.asp?command=startbtdiscovery:3
   * Output:
     * Success: `OK`
