@@ -171,6 +171,172 @@ If any functionality you need is not listed here, feel free to create a PR with 
     * Error: `Failed`
 ---
 
+### Equalizer
+
+* #### Disable Equalizer
+  * Command: `EQOff`
+  * Args: None
+  * Example: https://192.168.1.100/httpapi.asp?command=EQOff
+  * Output: `{"status":"OK"}`
+
+* #### Get list of available Equalizer presets
+  * Command: `EQGetList`
+  * Args: None
+  * Example: https://192.168.1.100/httpapi.asp?command=EQGetList
+  * Output (JSON): a list of equalizer presets
+  * Output example:
+    ```json
+    [
+        "Acoustic",
+        "Bass Booster",
+        "Bass Reducer",
+        "Classical",
+        "Dance",
+        "Deep",
+        "Electronic",
+        "Flat",
+        "Game",
+        "Hip-Hop",
+        "Jazz",
+        "Latin",
+        "Loudness",
+        "Lounge",
+        "Movie",
+        "Piano",
+        "Pop",
+        "R&B",
+        "Rock",
+        "Small Speakers",
+        "Spoken Word",
+        "Treble Booster",
+        "Treble Reducer",
+        "Vocal Booster"
+    ]
+    ```
+
+* #### Set Equalizer preset
+  * Command: `EQLoad`
+  * Args: one of the preset names
+  * Examples:
+    * https://192.168.1.100/httpapi.asp?command=EQLoad:Hip-Hop
+    * https://192.168.1.100/httpapi.asp?command=EQLoad:Bass+Booster
+  * Output (JSON): the resulting 10-band equalizer configuration
+  * Output example:
+    ```json
+    {
+      "EQStat": "On",
+      "Name": "Classical",
+      "pluginURI": "http://moddevices.com/plugins/caps/Eq10HP",
+      "EQBand": [
+          {
+              "index": 0,
+              "param_name": "band31Hz",
+              "value": 4.8
+          },
+          {
+              "index": 1,
+              "param_name": "band63Hz",
+              "value": 3.8
+          },
+          {
+              "index": 2,
+              "param_name": "band125Hz",
+              "value": 3
+          },
+          {
+              "index": 3,
+              "param_name": "band250Hz",
+              "value": 2.5
+          },
+          {
+              "index": 4,
+              "param_name": "band500Hz",
+              "value": -1.5
+          },
+          {
+              "index": 5,
+              "param_name": "band1kHz",
+              "value": -1.5
+          },
+          {
+              "index": 6,
+              "param_name": "band2kHz",
+              "value": 0
+          },
+          {
+              "index": 7,
+              "param_name": "band4kHz",
+              "value": 2.2
+          },
+          {
+              "index": 8,
+              "param_name": "band8kHz",
+              "value": 3.2
+          },
+          {
+              "index": 9,
+              "param_name": "band16kHz",
+              "value": 3.8
+          }
+      ],
+      "channelMode": "Stereo",
+      "status": "OK",
+      "source_name": "wifi"
+    }
+    ```
+
+---
+
+### Squeezelite (Lyrion Music Server/Logitech Media Server) integration
+
+* #### Get information about the Squeezelite configuration
+  * Command: `Squeezelite:getState`
+  * Args: None
+  * Output (JSON):
+    * `default_server`: the LMS instance to which the player would connect automatically
+    * `state`: 
+      * `discovering`: player is discovering LMS instances
+      * `connected`: player is connected to an LMS
+    * `discover_list`: list of LMS instances found in the player's network
+    * `auto_connect`: whether to automatically re-connect to the previously connected LMS instance
+  * Example: https://192.168.1.100/httpapi.asp?command=Squeezelite:getState
+  * Output example:
+    ```json
+    {
+      "default_server": "192.168.1.4:3483",
+      "state": "discovering",
+      "discover_list": [
+        "192.168.1.4:3483",
+        "192.168.1.123:3483"
+      ],
+      "connected_server": "192.168.1.4:3483",
+      "auto_connect": 1
+    }
+    ```
+
+* #### Trigger Lyrion Music Server discovery
+  * Command: `Squeezelite:discover`
+  * Args: None
+  * Example: https://192.168.1.100/httpapi.asp?command=Squeezelite:discover
+  * Output: `OK`
+
+* #### Turn on/off LMS auto connect
+  * Command: `Squeezelite:autoConnectEnable`
+  * Args: `ON`: 0 or 1
+  * Examples:
+    * https://192.168.1.100/httpapi.asp?command=Squeezelite:autoConnectEnable:0
+    * https://192.168.1.100/httpapi.asp?command=Squeezelite:autoConnectEnable:1
+  * Output: `OK`
+
+* #### Connect player to previously discovered LMS instance
+  * Command: `Squeezelite:connectServer`
+  * Args: `LMS IP Address`
+  * Example:
+    * https://192.168.1.100/httpapi.asp?command=Squeezelite:connectServer:192.168.1.123
+  * Output: `OK`
+
+---
+
 ### Misc
 
 * #### Turn on/off status LED ("Status Light" option from app)
