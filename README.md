@@ -176,11 +176,13 @@ If any functionality you need is not listed here, feel free to create a PR with 
 * #### Disable Equalizer
   * Command: `EQOff`
   * Args: None
-  * Output: `OK`
+  * Example: https://192.168.1.100/httpapi.asp?command=EQOff
+  * Output: `{"status":"OK"}`
 
 * #### Get list of available Equalizer presets
   * Command: `EQGetList`
   * Args: None
+  * Example: https://192.168.1.100/httpapi.asp?command=EQGetList
   * Output (JSON): a list of equalizer presets
   * Output example:
     ```json
@@ -297,16 +299,17 @@ If any functionality you need is not listed here, feel free to create a PR with 
       * `connected`: player is connected to an LMS
     * `discover_list`: list of LMS instances found in the player's network
     * `auto_connect`: whether to automatically re-connect to the previously connected LMS instance
+  * Example: https://192.168.1.100/httpapi.asp?command=Squeezelite:getState
   * Output example:
     ```json
     {
-      "default_server": "192.168.171.4:3483",
+      "default_server": "192.168.1.4:3483",
       "state": "discovering",
       "discover_list": [
-        "192.168.171.4:3483",
-        "192.168.171.24:3483"
+        "192.168.1.4:3483",
+        "192.168.1.123:3483"
       ],
-      "connected_server": "192.168.171.4:3483",
+      "connected_server": "192.168.1.4:3483",
       "auto_connect": 1
     }
     ```
@@ -314,6 +317,7 @@ If any functionality you need is not listed here, feel free to create a PR with 
 * #### Trigger Lyrion Music Server discovery
   * Command: `Squeezelite:discover`
   * Args: None
+  * Example: https://192.168.1.100/httpapi.asp?command=Squeezelite:discover
   * Output: `OK`
 
 * #### Turn on/off LMS auto connect
@@ -324,11 +328,10 @@ If any functionality you need is not listed here, feel free to create a PR with 
     * https://192.168.1.100/httpapi.asp?command=Squeezelite:autoConnectEnable:1
   * Output: `OK`
 
-
 * #### Connect player to previously discovered LMS instance
   * Command: `Squeezelite:connectServer`
   * Args: `LMS IP Address`
-  * Examples:
+  * Example:
     * https://192.168.1.100/httpapi.asp?command=Squeezelite:connectServer:192.168.1.123
   * Output: `OK`
 
